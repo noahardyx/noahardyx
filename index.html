@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="변동 소득을 반영해 금융 목표 달성 가능성을 분석하는 AI 플래너" />
+    <meta name="theme-color" content="#5146e5" />
+    <title>리듬 | AI 금융목표 플래너</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="리듬 홈">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>리듬</span>
+        </a>
+        <span class="product-label">금융목표 플래너</span>
+        <div class="topbar-actions">
+          <button class="icon-button" type="button" aria-label="알림">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
+            <span class="notification-dot"></span>
+          </button>
+          <button class="profile" type="button" aria-label="내 프로필">
+            <span class="avatar">김</span>
+            <span class="profile-copy"><b>김하늘님</b><small>프리랜서</small></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <aside class="sidebar" aria-label="주 메뉴">
+        <nav>
+          <a href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 3l9 8v10h-6v-6H9v6H3z"/></svg>홈</a>
+          <a href="#income"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m5 10V5m6 14v-7m5 7V3"/></svg>소득 흐름</a>
+          <a class="active" href="#planner" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3m10 7h-3"/></svg>목표 플래너</a>
+          <a href="#plans"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5m0 14h16M7 15l4-4 3 2 5-7"/></svg>나의 리포트</a>
+        </nav>
+        <div class="sidebar-note">
+          <span>TIP</span>
+          <p>수입 내역이 쌓일수록<br />예측이 더 정확해져요.</p>
+          <a href="#income">소득 내역 확인 <b>→</b></a>
+        </div>
+        <button class="help-link" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.3 2.3 0 1 1 3.7 1.8c-1 .7-1.5 1-1.5 2.2m0 4h.01"/></svg>도움이 필요하신가요?</button>
+      </aside>
+
+      <main>
+        <section class="page-intro" id="planner">
+          <div>
+            <p class="eyebrow">GOAL PLANNER</p>
+            <h1>이루고 싶은 목표가 있나요?</h1>
+            <p>수입이 매달 달라도 괜찮아요. 지금 흐름에 맞는 방법을 함께 찾아드릴게요.</p>
+          </div>
+          <div class="sample-badge"><span></span>MVP 1 샘플 소득 연동 중</div>
+        </section>
+
+        <section class="workspace-grid">
+          <article class="chat-card panel">
+            <header class="panel-head chat-head">
+              <div class="ai-badge" aria-hidden="true"><span>✦</span></div>
+              <div><h2>리듬 AI</h2><p><span class="online-dot"></span>목표 설계 중</p></div>
+              <button class="more-button" type="button" aria-label="대화 메뉴">•••</button>
+            </header>
+
+            <div class="chat-log" id="chatLog" aria-live="polite">
+              <div class="date-divider"><span>오늘</span></div>
+              <div class="message-row bot">
+                <div class="mini-ai" aria-hidden="true">✦</div>
+                <div class="message-bubble">
+                  <p>안녕하세요, 하늘님! 👋</p>
+                  <p>이루고 싶은 금융 목표를 편하게 말씀해주세요.</p>
+                  <small>예: “10월까지 150만 원짜리 노트북을 사고 싶어요.”</small>
+                </div>
+              </div>
+              <div class="quick-prompts" id="quickPrompts">
+                <button type="button" data-prompt="10월까지 150만 원짜리 노트북을 사고 싶어요">💻 노트북 마련</button>
+                <button type="button" data-prompt="12월까지 비상금 300만 원을 모으고 싶어요">🛟 비상금 만들기</button>
+                <button type="button" data-prompt="11월까지 세금 100만 원을 준비하고 싶어요">🧾 세금 준비</button>
+              </div>
+            </div>
+
+            <form class="chat-input" id="chatForm">
+              <label class="sr-only" for="chatMessage">목표 입력</label>
+              <input id="chatMessage" autocomplete="off" placeholder="목표를 입력해주세요" />
+              <button type="submit" aria-label="전송">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 12 16-8-5 16-3-6-8-2Zm8 2 8-10"/></svg>
+              </button>
+            </form>
+            <p class="chat-disclaimer">리듬 AI는 의사결정을 돕는 참고 정보를 제공합니다.</p>
+          </article>
+
+          <aside class="goal-card panel" aria-label="현재 목표 요약">
+            <header class="panel-head">
+              <div><p class="eyebrow">MY GOAL</p><h2>현재 목표</h2></div>
+              <button class="edit-button" id="editGoal" type="button">수정</button>
+            </header>
+            <div class="empty-goal" id="emptyGoal">
+              <div class="empty-icon">◎</div>
+              <h3>아직 목표가 없어요</h3>
+              <p>왼쪽 채팅에서 이루고 싶은<br />목표를 알려주세요.</p>
+            </div>
+            <div class="goal-content hidden" id="goalContent">
+              <div class="goal-title-row">
+                <span class="goal-emoji" id="goalEmoji">💻</span>
+                <div><small>첫 번째 목표</small><h3 id="goalTitle">작업용 노트북 마련</h3></div>
+              </div>
+              <div class="goal-meter-label"><span>준비한 금액</span><b id="savedAmount">350,000원</b></div>
+              <div class="progress-track"><i id="goalProgress"></i></div>
+              <div class="goal-stats">
+                <div><span>목표 금액</span><b id="goalAmount">1,500,000원</b></div>
+                <div><span>목표 날짜</span><b id="goalDate">2026. 10. 31</b></div>
+              </div>
+              <div class="analysis-lock" id="analysisLock">
+                <div class="lock-icon">✦</div>
+                <p><b>분석을 준비하고 있어요</b><span>질문에 답하면 달성 확률을 계산해요.</span></p>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="income-section" id="income">
+          <div class="section-title">
+            <div><p class="eyebrow">MVP 1 · INCOME DATA</p><h2>소득 예측 데이터</h2></div>
+            <button class="ghost-button" id="refreshIncome" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>샘플 데이터 새로고침</button>
+          </div>
+          <div class="income-grid">
+            <article class="income-summary panel">
+              <span class="data-tag">예측</span>
+              <p>이번 달 예상 수입</p>
+              <h3 id="monthlyIncome">2,840,000원</h3>
+              <div class="income-delta"><span>↗ 8.4%</span> 지난달보다 높아요</div>
+              <div class="source-list" id="sourceList"></div>
+            </article>
+            <article class="income-chart panel">
+              <div class="chart-head"><div><p>향후 8주 현금 흐름</p><h3>주간 예상 소득</h3></div><div class="chart-legend"><span class="solid"></span>예상 소득 <span class="range"></span>예측 범위</div></div>
+              <div class="chart-wrap" id="incomeChart" role="img" aria-label="향후 8주 예상 소득 그래프"></div>
+            </article>
+            <article class="income-signal panel">
+              <p>소득 안정성</p>
+              <div class="stability-score"><strong id="stabilityScore">72</strong><span>/100</span></div>
+              <div class="gauge"><i></i></div>
+              <p class="signal-copy"><b>보통 이상이에요</b><br />주 수입원 3개가 서로 보완하고 있어요.</p>
+              <button id="viewMethod" type="button">계산 기준 보기 →</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="analysis-section hidden" id="analysisSection">
+          <div class="section-title">
+            <div><p class="eyebrow">AI ANALYSIS</p><h2>목표 달성 분석</h2></div>
+            <div class="engine-tags"><span>현금흐름 분석</span><span>5,000회 시뮬레이션</span></div>
+          </div>
+          <div class="analysis-grid">
+            <article class="probability-card panel">
+              <div class="probability-visual" id="probabilityVisual"><div><strong id="probability">78</strong><span>%</span><small>달성 확률</small></div></div>
+              <div class="probability-copy">
+                <span class="status-pill" id="statusPill">달성 가능성이 높아요</span>
+                <h3 id="analysisHeadline">현재 흐름이라면 목표에 가까워질 수 있어요.</h3>
+                <p id="analysisDescription">생활비와 비상금을 지키면서 매주 일정 금액을 준비하면 목표 달성이 가능합니다.</p>
+                <div class="key-numbers">
+                  <div><span>목표까지 부족한 금액</span><b id="gapAmount">1,150,000원</b></div>
+                  <div><span>권장 주간 적립액</span><b id="weeklyAmount">71,900원</b></div>
+                </div>
+              </div>
+            </article>
+            <article class="explain-card panel">
+              <p class="eyebrow">WHY THIS SCORE?</p>
+              <h3>이렇게 분석했어요</h3>
+              <ul>
+                <li><span class="check">✓</span><p><b>MVP 1 예상 소득 반영</b><small>향후 수입의 변동 폭과 입금 시점을 고려했어요.</small></p></li>
+                <li><span class="check">✓</span><p><b>필수 지출 우선 보호</b><small>생활비·업무비·비상금은 목표 자금에서 제외했어요.</small></p></li>
+                <li><span class="check">✓</span><p><b>소득 변동 시나리오</b><small>좋은 달과 어려운 달을 함께 가정해 확률을 계산했어요.</small></p></li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="plan-section hidden" id="plans">
+          <div class="section-title">
+            <div><p class="eyebrow">RECOMMENDED PLANS</p><h2>나에게 맞는 준비 방법</h2></div>
+            <p>언제든 소득이 바뀌면 계획을 다시 계산할 수 있어요.</p>
+          </div>
+          <div class="plan-grid" id="planGrid"></div>
+        </section>
+
+        <footer>
+          <div class="brand"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>리듬</span></div>
+          <p>본 서비스의 분석 결과는 참고용이며 금융상품 추천이나 투자 자문이 아닙니다.</p>
+          <span>프로토타입 v0.1</span>
+        </footer>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status"></div>
+    <div class="modal-backdrop hidden" id="methodModal" role="presentation">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" id="closeModal" type="button" aria-label="닫기">×</button>
+        <span class="modal-symbol">∿</span>
+        <p class="eyebrow">ANALYSIS METHOD</p>
+        <h2 id="modalTitle">달성 확률은 이렇게 계산해요</h2>
+        <p>직종별 최근 소득의 평균과 변동성을 기반으로 5,000개의 미래 현금흐름을 만들고, 필수 지출과 안전자금을 제외한 뒤 목표 금액을 넘는 경우의 비율을 계산합니다.</p>
+        <div class="formula">예상 수입 − 필수 지출 − 안전자금 ≥ 목표 적립액</div>
+        <small>현재는 MVP 1 연동을 가정한 샘플 데이터로 계산됩니다.</small>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
